@@ -14,7 +14,7 @@ export const StyledFormWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 3rem auto;
+  margin: 2rem auto;
   width: 85vw;
   @media (min-width: 768px) {
     width: 60vw;
