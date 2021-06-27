@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   StyledButton,
   StyledError,
@@ -16,15 +16,22 @@ const initialState = {
   gender: "",
 };
 
+export interface Istate {
+  name: string;
+  email: string;
+  message: string;
+  gender: string;
+  [propName: string]: string | number | undefined;
+}
+
 export const Form = () => {
-  const [data, setData] = useState(initialState);
+  const [data, setData] = useState<Istate>(initialState);
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     console.log("submitted!");
     console.log(data);
-
     for (let key in data) {
       if (data[key] === "") {
         setError(`${key} cannot be blank `);
@@ -36,7 +43,9 @@ export const Form = () => {
     setData(initialState);
   };
 
-  const handleInput = (e) => {
+  const handleInput: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  > = (e) => {
     const inputName = e.currentTarget.name;
     const value = e.currentTarget.value;
     setData((prev) => ({ ...prev, [inputName]: value }));
