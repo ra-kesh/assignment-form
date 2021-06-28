@@ -51,6 +51,14 @@ export const Form = () => {
     setData((prev) => ({ ...prev, [inputName]: value }));
   };
 
+  const ErrorDiv = () => {
+    return (
+      <StyledError>
+        <p>{error}</p>
+      </StyledError>
+    );
+  };
+
   return (
     <>
       <StyledFormWrapper>
@@ -58,6 +66,7 @@ export const Form = () => {
           <h2>Testing Form</h2>
           <label htmlFor="name">Name</label>
           <StyledInput
+            id="name"
             type="text"
             name="name"
             value={data.name}
@@ -65,6 +74,7 @@ export const Form = () => {
           />
           <label htmlFor="email">Email</label>
           <StyledInput
+            id="email"
             type="email"
             name="email"
             value={data.email}
@@ -96,15 +106,12 @@ export const Form = () => {
           <label htmlFor="message">Message</label>
           <StyledTextArea
             name="message"
+            id="message"
             value={data.message}
             onChange={handleInput}
           />
-          {error && (
-            <StyledError>
-              <p>{error}</p>
-            </StyledError>
-          )}
-          <StyledButton type="submit">Send Message</StyledButton>
+          {error && <ErrorDiv />}
+          <StyledButton type="submit">submit</StyledButton>
         </StyledForm>
       </StyledFormWrapper>
     </>
